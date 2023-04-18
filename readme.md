@@ -124,10 +124,24 @@ VALUES
 	CREATE PROCEDURE Ekle	
 	AS
 	INSERT INTO ogrenci(ograd, ogrsoyad)
-	VALUES (Scooby, Doo) 
+	VALUES (test, test) 
 	GO;
 
 	EXEC Ekle;
+
+	2.yol -- 
+	CREATE PROCEDURE Ekle(
+	IN name VARCHAR(50),
+    IN surname VARCHAR(50)
+    )
+BEGIN
+	INSERT INTO ogrenci(ograd, ogrsoyad)
+	VALUES (name, surname);
+END;
+
+CALL Ekle('Taylan','Acikgoz') 
+
+SELECT * from ogrenci where ograd='Taylan'
 
 	18) Öğrenci noya göre öğrenci silebilmeyi sağlayan "sil" adında bir prosedür oluşturun.
 	
