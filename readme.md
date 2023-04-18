@@ -64,6 +64,7 @@ VALUES
 	6) Nurettin Belek isimli yazarı ekleyip yazar numarasını yazdırınız.
 	(Not: Otomatik arttırmada son arttırılan değer @@IDENTITY değişkeni içinde tutulur.)
 	
+	INSERT INTO yazar(yazarad, yazarsoyad) VALUES ("Nurettin","Belek") SELECT yazarno from yazarno=@@IDENTITY
 	
 	7) 10B sınıfındaki öğrenci numarası 3 olan öğrenciyi 10C sınıfına geçirin.
 	
@@ -111,13 +112,26 @@ VALUES
 	
 	16) Öğrenci tablosunu kontrol etmek amaçlı tüm öğrencileri görüntüleyen "ogrencilistesi" adında bir prosedür oluşturun.
 	
+	CREATE PROCEDURE OgrenciListesi
+	AS
+	SELECT * FROM ogrenci
+	GO;
+
+	EXEC OgrenciListesi;
 	
 	17) Öğrenci tablosuna yeni öğrenci eklemek için "ekle" adında bir prosedür oluşturun.
 	
-	
+	CREATE PROCEDURE Ekle	
+	AS
+	INSERT INTO ogrenci(ograd, ogrsoyad)
+	VALUES (Scooby, Doo) 
+	GO;
+
+	EXEC Ekle;
+
 	18) Öğrenci noya göre öğrenci silebilmeyi sağlayan "sil" adında bir prosedür oluşturun.
 	
-	
+
 	
 	19) Öğrenci numarasını kullanarak kolay bir biçimde öğrencinin sınıfını değiştirebileceğimiz bir prosedür oluşturun.
 	
@@ -131,12 +145,17 @@ VALUES
 	#Esnek görevler (Esnek görevlerin hepsini Select in Select ile gerçekleştirmeniz beklenmektedir.)
 	22) Select in select yöntemiyle dram türündeki kitapları listeleyiniz.
 	
-	
+	SELECT * FROM kitap WHERE turno=(SELECT turno FROM tur WHERE turadi="DRAM")
+
 	23) Adı e harfi ile başlayan yazarların kitaplarını listeleyin.
 	
+	  SELECT * FROM kitap WHERE yazarno IN (SELECT yazarno FROM yazar WHERE yazarad LIKE "E%")
+
 	
 	24) Kitap okumayan öğrencileri listeleyiniz.
 	
+
+
 	
 	25) Okunmayan kitapları listeleyiniz
 
